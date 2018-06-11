@@ -13,6 +13,7 @@
 			text-align:center;
 			background-color:cyan;
 			margin: 20px;
+			font-size: 180%;
 		}
 		.button{
 			width: 80px;
@@ -39,11 +40,15 @@
 			height: 40px;
 			width: 120px;
 		}
+		#typevalue{
+			font-size: 180%;
+		}
 		/*input[type]{
 			width: 50px;
 			height:50px;
 			text-align:center;
 		}
+		
 */
 	</style>
 	<script>
@@ -52,41 +57,81 @@
 </head>
 <body style="background-color: yellow">
 	<!-- <button onclick="start()">strat</button> -->
+	<center><h1>improve your speed in maths</h1></center>
 	<br><br>
-	<center><h1>improve your speed in maths</h1>
-<div style="float: left;margin-left: 450px">
-<button  class="button1 btn-success" id="multiplication">multiplication</button>
-<button  class="button1 btn-primary" id="addition">addition</button>
-<button  class="button1 btn-info" id="subtraction">subtraction</button>
-</div>
-<div  id="newtimer" style="float: right;margin-right: 200px;">
-	<button  class="btn1 btn-success" onclick="timertoset()">set Timer</button>
-	<div id="settimer" style="display: none">
-		<input type="number" id="timervalue" name="" placeholder="in seconds ">
-		<button  class="btn-success" onclick="settimer()" style="height: 40px; width: 50px;" >set</button>
-		<h5>By defalut is 120 seconds</h5>
+	<div class="row">
+			  <div class="col-md-3">
+				</div>
+				<div class="col-md-6">
+						<div id="buttontype" style="display: block;">
+							<div id="gametypeid" style="display: block">
+									select one of this: <input type="radio" name="gametype"  id="TimetoComeback" value="TimetoComeback">Time To Comeback
+									<input type="radio" name="gametype"  id="TimetoComplete" value="TimetoComplete">Time To complete
+							</div>				
+							<center>
+								<button  class="button1 btn-success" id="multiplication">Tables</button>
+								<button  class="button1 btn-primary" id="addition">addition</button>
+								<button  class="button1 btn-info" id="subtraction">subtraction</button>
+							</center>
+								</div>
+								<div id="home" style="display: none;">
+										<center>
+											<button  class="btn btn-success" onclick="home()">home</button>
+										</center>
+								</div>
+				</div>
+				<div class="col-md-3">
+						<div  id="newtimer" >
+								<button  class="btn1 btn-success" onclick="timertoset()">set Timer</button>
+								<div id="settimer" style="display: none">
+									<input type="number" id="timervalue" name="" placeholder="in seconds ">
+									<button  class="btn-success" onclick="settimer()" style="height: 40px; width: 50px;" >set</button>
+									<h5>By defalut is 120 seconds</h5>
+								</div>
+							</div>
+					</div>
 	</div>
+	<div class="row">
+			<div class="col-md-3">
+		
+			</div>
+			<div class="col-md-6">
 
-</div>
-<br><br><br>
-<div id="maindata" style="display: none; float: left;margin-left: 400px">
-<input class="dem" type="text" id="dem1" value="0">
- <span id="typevalue">?</span>
-<input class="dem" type="text" id="dem2" value="0">
-<br>
-<br>
-<br>
-<span id="typevalue">1)</span><input type="submit" class="button" id="first" value="0">
-<span id="typevalue">2)</span><input type="submit" class="button" id="second" value="0">
-<span id="typevalue">3)</span><input type="submit" class="button" id="third" value="0">
-<span id="typevalue">4)</span><input type="submit" class="button" id="fourth" value="0">
-<br>
+					<div id ="dataresults" style="margin-left: 30px;display:none">
+							<h2>No Of questions Attempted: <span  style="font-size: 180%"id="noofattemp"></span></h2>
+							<h2>your score: <span  style="font-size: 180%" id="count"></span></h2>
+						<div id="results" style="margin-left: 30px;font-size: 180%">
+						</div>
+					</div>
 
+					<div id="maindata" style="display: none;">
+						<center>
+							<input  class="dem" type="text" id="dem1" value="0">
+							 <span id="typevalue">?</span>
+							<input class="dem" type="text" id="dem2" value="0">
+						</center>
+							<br>
+							<br>
+							<br>
+							<center>
+							<span id="typevalue">1)</span><input style="font-size: 180%"  type="submit" class="button" id="first" value="0">
+							<span id="typevalue">2)</span><input style="font-size: 180%" type="submit" class="button" id="second" value="0">
+							<span id="typevalue">3)</span><input style="font-size: 180%" type="submit" class="button" id="third" value="0">
+							<span id="typevalue">4)</span><input style="font-size: 180%" type="submit" class="button" id="fourth" value="0">
+						</center>
+							<br>							
+						</div>
+			</div>
+			<div class="col-md-3">
+					<div id="maindata1" style="display: none">
+							<input type="timer" id="timer" name="">  
+							<input type="submit" class="btn-danger" style="height: 40px; width: 50px;"  onclick="reset()" name="" value="Reset">
+							</div>
+				</div>
 </div>
-<div id="maindata1" style="float: right; margin-right: 200px;display: none">
-	<input type="timer" id="timer" name="">  
-	<input type="submit" class="btn-danger" style="height: 40px; width: 50px;"  onclick="reset()" name="" value="Reset">
-	</div>
+
+
+
 </center>
 </body>
 <script type="text/javascript">
@@ -95,7 +140,13 @@ var count=0;
 	  timeleft=120;
 	  var typename;
 	  var ref;
-
+		var dem1;
+		var dem2;
+		var typesymbol;
+		var noofattemp=0;
+		var gametype;
+	// const first = document.getElementById('results');
+  // first.innerHTML = '';
 		function timertoset(){
 			document.getElementById("settimer").style.display='block';
 		}
@@ -119,36 +170,58 @@ var count=0;
          document.getElementById("timer").value=total;
 		}
 		function out(){
-			alert('your score is'+count);
-		  alert('your are out start again');
-		  location.reload();
+			document.getElementById("buttontype").style.display='none';
+			document.getElementById("maindata").style.display='none';
+			document.getElementById("maindata1").style.display='none';
+			document.getElementById("home").style.display='block';
+			document.getElementById("dataresults").style.display='block';
+			document.getElementById("count").innerHTML=count;
+			document.getElementById("noofattemp").innerHTML=noofattemp-1;
+			
 		}
     }
 		function start(){
-	    var d1=Math.floor(Math.random()*10)+1;
+			noofattemp++;
+      var d1=Math.floor(Math.random()*10)+1;
 	    var d2=Math.floor(Math.random()*10)+1;
-	    var dem1=document.getElementById("dem1").value=d1;
-	    var dem2=document.getElementById("dem2").value=d2;
+	     
 	    switch(typename){
 		case 'multiplication':
+	          	typesymbol = '*'
 		         document.getElementById("typevalue").innerHTML='*';
 		         document.getElementById("addition").style.display='none';
 		         document.getElementById("subtraction").style.display='none';
-		         var z =dem1*dem2;
+		         var z =d1*d2;
 			break;
 		case 'addition':
+		         typesymbol = '+'
 		         document.getElementById("typevalue").innerHTML='+';
 		         document.getElementById("multiplication").style.display='none';
 		         document.getElementById("subtraction").style.display='none';
-		            var z =dem1+dem2;
+						   d1 =d1*2;
+							 d2 =d2*2
+		            var z =d1+d2;
 			  break;
 		case 'subtraction' :
+		        typesymbol = '-'
 		        document.getElementById("typevalue").innerHTML='-';
 		        document.getElementById("multiplication").style.display='none';
 		        document.getElementById("addition").style.display='none';
-		          var z =dem1-dem2;
+               d1 =d1*4;
+							 d2 =d2*5;
+						if(d1<d2){
+              var z =d2-d1;
+							var a = d1;
+							d1 = d2
+							d2= a;
+						}else{
+              var z =d1-d2;
+						}
+		            
 			  break;
 		}
+		dem1=document.getElementById("dem1").value=d1;
+	   dem2=document.getElementById("dem2").value=d2;
          ref= z;
          var ch = Math.floor(Math.random()*4)+1;
 		if(ch != 1){
@@ -179,18 +252,36 @@ var count=0;
 		}
 	    }
 	 function reset(){
-	 	alert("again click on start  button");
-	 	location.reload();
+	 	 alert("again click on start  button");
+		 location.reload();
 	   }
+		 function home(){
+    	location.reload();
+		 }
   const buttons1 = document.getElementsByClassName('button1');
   const buttonsCount1 = buttons1.length;
   for (let i = 0; i < buttonsCount1; i += 1) {
   buttons1[i].addEventListener('click', function() {
+	
+    if(document.getElementById("TimetoComeback").checked){
+	   gametype = document.getElementById("TimetoComeback").value
+		 console.log("gametype1",gametype);
+		}
+		if(document.getElementById("TimetoComplete").checked){
+    gametype = document.getElementById("TimetoComplete").value
+		console.log("gametype",gametype);
+		}
+		console.log("gametype",gametype);
+   if(!gametype){
+		 alert('please select one this game type');
+	 return ;
+	 }
     typename =this.id;
     start();
     setup();
+		document.getElementById("gametypeid").style.display='none';
 		document.getElementById("newtimer").style.display='none';
-    document.getElementById("maindata").style.display='block';
+        document.getElementById("maindata").style.display='block';
 		document.getElementById("maindata1").style.display='block';
 		
     })
@@ -201,13 +292,45 @@ var count=0;
    buttons[i].addEventListener('click', function() {
         id1=this.id;
 		var dem3=document.getElementById(`${id1}`).value;
-        if( ref== dem3){
+     if( ref== dem3){
 		  count=count+1;
+			let markup = `
+      <div class="row" >
+			<div class="col-md-1" ><span>${dem1}</span></div>
+			<div class="col-md-1"><span>${typesymbol}</span></div>
+			<div class="col-md-1"><span>${dem2}</span></div>
+			<div class="col-md-1">=</div>
+			<div class="col-md-1"><span>${ref}</span></div>
+			<div class="col-md-1"><span style="color: green;margin-left:8px">&#x2714;</span></div>
+      </div>`;
+      let block = document.createElement('div');
+      block.innerHTML = markup;
+      let head = document.getElementById('results');
+      head.appendChild(block);
 		  start();
 		}else{
-			alert('your score is'+count);
+			if(gametype == "TimetoComplete"){
+			let markup = `
+			<div class="row">
+			<div class="col-md-1"><span>${dem1}</span></div>
+			<div class="col-md-1"><span>${typesymbol}</span></div>
+			<div class="col-md-1"><span>${dem2}</span></div>
+			<div class="col-md-1">=</div>
+			<div class="col-md-1"><span>${dem3}</span></div>
+			<div class="col-md-1"><span style="color: red;margin-left:8px">&#x2718;</span>(${ref})</div>
+      </div>
+     `;
+      let block = document.createElement('div');
+      block.innerHTML = markup;
+      let head = document.getElementById('results');
+      head.appendChild(block);
+			}else{
+        alert('your score is'+count);
 		  alert('your are out start again');
-		  location.reload();
+			location.reload();
+			}
+			
+		  start();
 		}
 })
 }
